@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp sinh nhật cho yne</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #dbeeff, #ffffff);
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      width: 320px;
+      height: 500px;
+      perspective: 1000px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+    }
+    .card.open .card-inner {
+      transform: rotateX(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .card-front {
+      background: linear-gradient(135deg, #a8d8ff, #d0e9ff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #004080;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .card-front span {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: normal;
+      color: #003366;
+    }
+    .card-back {
+      background: linear-gradient(135deg, #f7fbff, #cfe8ff);
+      transform: rotateX(180deg);
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      color: #003366;
+    }
+    .message {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.8);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .birthday-text {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #004080;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      animation: rise 10s infinite ease-in;
+    }
+    @keyframes rise {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Gửi yne ✨
+        <span>⬆️ Kéo lên nha</span>
+      </div>
+      <div class="card-back">
+        <div class="message">
+          19 tuổi ròi, chúc yne lúc nào cũng hạnh phúc, làm được những điều mình mong muốn nha và dù thế nào thì cũng hy vọng tuổi mới yne sẽ luôn trọn vẹn:>
+        </div>
+        <div class="birthday-text">Chúc mừng sinh nhật, yne!</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('card');
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+    
+    // Tạo hiệu ứng bong bóng nền
+    for (let i = 0; i < 20; i++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      document.body.appendChild(bubble);
+      const size = Math.random() * 20 + 10;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.animationDuration = `${5 + Math.random() * 5}s`;
+    }
+  </script>
+</body>
+</html>
